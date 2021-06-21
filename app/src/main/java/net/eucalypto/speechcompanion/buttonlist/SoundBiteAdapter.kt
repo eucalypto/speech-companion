@@ -1,21 +1,24 @@
 package net.eucalypto.speechcompanion.buttonlist
 
 import android.content.Context
+import android.media.SoundPool
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import net.eucalypto.speechcompanion.buttonlist.soundbitebutton.SoundbiteButtonViewModel
 import net.eucalypto.speechcompanion.data.SoundBite
 import net.eucalypto.speechcompanion.databinding.SoundbiteButtonBinding
 
-class SoundBiteAdapter :
+class SoundBiteAdapter(private val soundPool: SoundPool) :
     ListAdapter<SoundBite, SoundBiteViewHolder>(SoundBiteDiffCallback()) {
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): SoundBiteViewHolder {
-        return SoundBiteViewHolder.from(parent)
+        return SoundBiteViewHolder.from(parent, soundPool)
     }
 
     override fun onBindViewHolder(holder: SoundBiteViewHolder, position: Int) {
@@ -26,19 +29,24 @@ class SoundBiteAdapter :
 
 class SoundBiteViewHolder private constructor(private val binding: SoundbiteButtonBinding) :
     RecyclerView.ViewHolder(binding.root) {
+
     fun bindTo(soundBite: SoundBite) {
-        binding.button.text = soundBite.title
+        binding.viewModel?.apply { sound = soundBite }
+        binding.executePendingBindings()
     }
 
 
     companion object {
-        fun from(parent: ViewGroup): SoundBiteViewHolder {
-            val inflater = layoutInflaterFrom(parent)
-            val binding =
-                SoundbiteButtonBinding.inflate(inflater, parent, false)
 
+        fun from(parent: ViewGroup, soundPool: SoundPool): SoundBiteViewHolder {
+            val inflater = layoutInflaterFrom(parent)
+            val binding = SoundbiteButtonBinding
+                .inflate(inflater, parent, false).apply {
+                    viewModel = SoundbiteButtonViewModel(soundPool)
+                }
             return SoundBiteViewHolder(binding)
         }
+
         private fun layoutInflaterFrom(parent: ViewGroup) =
             parent.context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE)
@@ -53,7 +61,7 @@ class SoundBiteDiffCallback : DiffUtil.ItemCallback<SoundBite>() {
         oldItem: SoundBite,
         newItem: SoundBite
     ): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.resId == newItem.resId
     }
 
     override fun areContentsTheSame(

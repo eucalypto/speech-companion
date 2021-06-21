@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import net.eucalypto.speechcompanion.data.SoundBite
+import androidx.recyclerview.widget.RecyclerView
 import net.eucalypto.speechcompanion.databinding.ButtonListFragmentBinding
 
 class ButtonListFragment : Fragment() {
+
+    private val viewModel: ButtonListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,15 +32,15 @@ class ButtonListFragment : Fragment() {
 
 
 
-        binding.buttonListRecyclerview.apply {
-            adapter = SoundBiteAdapter().apply {
-                submitList(
-                    listOf(
-                        SoundBite(0, "Foo"),
-                        SoundBite(1, "bar"),
-                        SoundBite(2, "bacon")
-                    )
-                )
+
+        setUpRecyclerView(binding.buttonListRecyclerview)
+    }
+
+    private fun setUpRecyclerView(recycler: RecyclerView) {
+        recycler.apply {
+            adapter = SoundBiteAdapter(viewModel.soundPool).apply {
+                viewModel.loadSoundList(viewModel.soundList, requireContext())
+                submitList(viewModel.soundList)
             }
             layoutManager = LinearLayoutManager(context)
         }

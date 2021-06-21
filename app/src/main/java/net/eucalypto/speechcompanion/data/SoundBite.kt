@@ -1,6 +1,7 @@
 package net.eucalypto.speechcompanion.data
 
 data class SoundBite(
-    val id: Long = 0,
-    val title: String = ""
+    var title: String = "",
+    val resId: Int = 0,
+    var soundId: Int = 0
 )
