@@ -1,4 +1,4 @@
-package net.eucalypto.speechcompanion.buttonlist
+package net.eucalypto.speechcompanion.ui.buttonlist
 
 import android.content.Context
 import android.media.SoundPool

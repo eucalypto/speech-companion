@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Speech Companion</string>
+    <string name="fab_content_description">Add your own voice as a sound button</string>
 </resources>

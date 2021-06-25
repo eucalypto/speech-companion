@@ -1,4 +1,4 @@
-package net.eucalypto.speechcompanion.buttonlist.soundbitebutton
+package net.eucalypto.speechcompanion.ui.buttonlist.soundbitebutton
 
 import android.media.SoundPool
 import androidx.lifecycle.ViewModel

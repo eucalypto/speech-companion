@@ -6,6 +6,15 @@
 
     <fragment
         android:id="@+id/buttonListFragment"
-        android:name="net.eucalypto.speechcompanion.buttonlist.ButtonListFragment"
-        android:label="ButtonListFragment" />
+        android:name="net.eucalypto.speechcompanion.ui.buttonlist.ButtonListFragment"
+        android:label="ButtonListFragment" >
+        <action
+            android:id="@+id/action_buttonListFragment_to_addVoiceFragment"
+            app:destination="@id/addVoiceFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addVoiceFragment"
+        android:name="net.eucalypto.speechcompanion.ui.addvoice.AddVoiceFragment"
+        android:label="AddVoiceFragment" />
 </navigation>

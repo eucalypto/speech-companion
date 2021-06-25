@@ -1,4 +1,4 @@
-package net.eucalypto.speechcompanion.buttonlist
+package net.eucalypto.speechcompanion.ui.buttonlist
 
 import android.content.Context
 import android.media.SoundPool
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import net.eucalypto.speechcompanion.buttonlist.soundbitebutton.SoundbiteButtonViewModel
+import net.eucalypto.speechcompanion.ui.buttonlist.soundbitebutton.SoundbiteButtonViewModel
 import net.eucalypto.speechcompanion.data.SoundBite
 import net.eucalypto.speechcompanion.databinding.SoundbiteButtonBinding
 

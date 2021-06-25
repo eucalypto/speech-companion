@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="net.eucalypto.speechcompanion.buttonlist.soundbitebutton.SoundbiteButtonViewModel" />
+            type="net.eucalypto.speechcompanion.ui.buttonlist.soundbitebutton.SoundbiteButtonViewModel" />
     </data>
 
     <FrameLayout
