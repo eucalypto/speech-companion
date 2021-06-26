@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import net.eucalypto.speechcompanion.ui.buttonlist.soundbitebutton.SoundbiteButtonViewModel
 import net.eucalypto.speechcompanion.data.SoundBite
 import net.eucalypto.speechcompanion.databinding.SoundbiteButtonBinding
+import net.eucalypto.speechcompanion.ui.buttonlist.soundbitebutton.SoundbiteButtonViewModel
 
 class SoundBiteAdapter(private val soundPool: SoundPool) :
     ListAdapter<SoundBite, SoundBiteViewHolder>(SoundBiteDiffCallback()) {
@@ -39,19 +39,13 @@ class SoundBiteViewHolder private constructor(private val binding: SoundbiteButt
     companion object {
 
         fun from(parent: ViewGroup, soundPool: SoundPool): SoundBiteViewHolder {
-            val inflater = layoutInflaterFrom(parent)
+            val inflater = LayoutInflater.from(parent.context)
             val binding = SoundbiteButtonBinding
                 .inflate(inflater, parent, false).apply {
                     viewModel = SoundbiteButtonViewModel(soundPool)
                 }
             return SoundBiteViewHolder(binding)
         }
-
-        private fun layoutInflaterFrom(parent: ViewGroup) =
-            parent.context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE)
-                    as LayoutInflater
-
     }
 
 }
